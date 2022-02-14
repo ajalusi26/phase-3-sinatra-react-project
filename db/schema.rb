@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_02_13_184348) do
     t.string "name"
     t.string "description"
     t.string "brand"
+    t.string "img"
     t.integer "price"
     t.integer "admin_id"
     t.integer "category_id"

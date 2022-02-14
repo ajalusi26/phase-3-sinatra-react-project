@@ -4,6 +4,7 @@ class ProductsTable < ActiveRecord::Migration[6.1]
       t.string :name 
       t.string :description
       t.string :brand
+      t.string :img
       t.integer :price
       t.integer :admin_id
       t.integer :category_id
