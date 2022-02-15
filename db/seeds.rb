@@ -1,3 +1,5 @@
+require 'faker'
+
 puts "🌱 Seeding spices..."
 
 # Seed your database here
@@ -5,6 +7,8 @@ puts "🌱 Seeding spices..."
 Admin.create(username: "TrickyDick", password: "admiralfartbus")
 
 Category.create(category_name: "Music", admin_id: 1)
+
+Category.create(category_name: "Games", admin_id: 1)
 
 Product.create(name:"12 Bar Bruise" , 
     description:"12 Bar Bruise is the debut studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 7 September 2012 on Flightless.[6] It peaked at No. 14 on the ARIA Albums Chart after being released on vinyl in November 2018",
@@ -114,5 +118,16 @@ Product.create(name:"Butterfly 3000" ,
     brand: "King Gizzard & The Lizard Wizard", 
     img: "https://upload.wikimedia.org/wikipedia/en/4/47/Butterfly_3000_cover.jpg",
     price: 25, admin_id: 1, category_id: 1)
+
+10.times do
+    game = Product.create(
+        name: Faker::Game.title,
+        description: Faker::Lorem.sentence,
+        brand: Faker::Game.platform,
+        price: rand(0..60), 
+        admin_id: 1,
+        category_id: 2
+      )
+end
 
 puts "✅ Done seeding!"
