@@ -18,4 +18,9 @@ class ApplicationController < Sinatra::Base
     allUsers.to_json
   end
 
+  get '/products' do
+    products = Product.all
+    products.to_json
+  end
+
 end
