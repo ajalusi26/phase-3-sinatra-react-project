@@ -1,5 +1,3 @@
-require 'faker'
-
 puts "🌱 Seeding spices..."
 
 # Seed your database here
@@ -10,11 +8,15 @@ Category.create(category_name: "Music", admin_id: 1)
 
 Category.create(category_name: "Games", admin_id: 1)
 
+User.create(username: "bobby", email:"bobby@gmail.com", password:"123")
+
+Cart.create(user_id: 1, product_id: 1)
+
 Product.create(name:"12 Bar Bruise" , 
     description:"12 Bar Bruise is the debut studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 7 September 2012 on Flightless.[6] It peaked at No. 14 on the ARIA Albums Chart after being released on vinyl in November 2018",
     brand: "King Gizzard & The Lizard Wizard", 
     img: "https://upload.wikimedia.org/wikipedia/en/9/9f/12_Bar_Bruise_King_Gizzard.jpg",
-    price: 25, admin_id: 1, category_id: 1)
+    price: 25, admin_id: 1, category_id: 1 )
 
 Product.create(name:"Eyes Like the Sky" , 
     description:"Eyes Like the Sky is the second studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 22 February 2013 on the label Flightless. Described as a 'cult western audio book',[2] the album is narrated and written by Broderick Smith, the frontman for the 1970s Australian rock group The Dingoes and the father of King Gizzard keyboardist Ambrose Kenny Smith. The story revolves around child soldiers, native Americans and gun fights, all set in the American frontier.",
