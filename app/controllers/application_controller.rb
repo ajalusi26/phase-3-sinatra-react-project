@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
   get '/products' do
     products = { 
       all: Product.all,
-      music: Category.first.products,
+      phones: Category.first.products,
       games: Category.second.products
      }
      products.to_json
