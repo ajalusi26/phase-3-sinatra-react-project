@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -28,19 +30,6 @@ class ApplicationController < Sinatra::Base
     products.to_json
   end
 
-<<<<<<< HEAD
-  post '/carts' do
-    cart = Cart.create(
-      user_id: params[:user_id]
-      product_id: params[:product_id]
-    ) 
-    cart.to_json
-  end
-
-  get '/products/user/:id' do
-    products = User.find(params[:id]).products
-    products.to_json
-=======
   # get products by....
 
   get '/all' do 
@@ -65,10 +54,16 @@ class ApplicationController < Sinatra::Base
     cartItem.to_json
   end
 
-  post '/get_cart_items' do
-    allCartItems = User.find(params[:user_id]).carts.map{|i| i.product}
+  get '/get_cart_items/:id' do
+    allCartItems = User.find(params[:id]).carts.map{|i| i.product}
     allCartItems.to_json
->>>>>>> refs/remotes/origin/main
+  end
+
+  delete '/carts/:id' do
+    cart = Cart.find { |cart| cart.product_id == params[:id].to_i }
+    cart.destroy
+    cart.to_json
+    
   end
 
 end
