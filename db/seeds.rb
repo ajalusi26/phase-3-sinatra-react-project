@@ -135,3 +135,4 @@ end
 Cart.create(user_id: User.first.id, product_id: Product.first.id)
 
 puts "✅ Done seeding!"
+
