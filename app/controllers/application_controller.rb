@@ -48,8 +48,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/get_cart_items/:id' do
+    cart_data = []
     allCartItems = User.find(params[:id]).carts.map{|i| i.product}
-    allCartItems.to_json
+    total = User.find(params[:id]).carts.map{|i| i.product.price}
+    cart_data << allCartItems
+    cart_data << total.sum
+    cart_data.to_json
   end
 
   delete '/carts/:id' do
