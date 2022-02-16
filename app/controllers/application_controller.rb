@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -45,6 +47,17 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/get_cart_items/:id' do
+    allCartItems = User.find(params[:id]).carts.map{|i| i.product}
+    allCartItems.to_json
+  end
+
+  delete '/carts/:id' do
+    cart = Cart.find { |cart| cart.product_id == params[:id].to_i }
+    cart.destroy
+    cart.to_json
+    
+  end
   get '/cart_items/:id' do
     allCartItems = []
     User.find(params[:id]).carts.map do |i|
