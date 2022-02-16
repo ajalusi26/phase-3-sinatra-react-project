@@ -19,28 +19,16 @@ class ApplicationController < Sinatra::Base
     currentUser.to_json  
   end
 
-  get '/products' do
-    products = Product.all
-    products.to_json
-  end
-
+  
   # get products by....
-
-  get '/all' do 
-    all = Product.all
-    all.to_json
+  get '/products' do
+    products = { 
+      all: Product.all,
+      music: Category.first.products,
+      games: Category.second.products
+     }
+     products.to_json
   end
-
-  get '/music' do
-    music = Category.first.products
-    music.to_json
-  end
-
-  get '/games' do
-    games = Category.second.products
-    games.to_json
-  end
-
   #add to cart and get cart items
 
   post '/add_to_cart' do
