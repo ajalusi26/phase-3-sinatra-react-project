@@ -13,7 +13,7 @@ User.create(username: "bobby", email:"bobby@gmail.com", password:"123")
 
 
 Product.create(name:"Galaxy S21 FE 5G" , 
-    description:"stuff",
+    description:"Get more out of the activities you heart most with Galaxy S21 FE 5G. Whether you're a gaming guru or social media star, this crowd pleaser has the style, power and pro-grade camera to unleash epic in the everyday.",
     brand: "Samsung", 
     img: "https://image-us.samsung.com/SamsungUS/home/mobile/phones/pdp/galaxy-s21-fe-5g/gallery/SM-G990U-lavendar-1.png?$product-card-small-jpg$",
     price: 399.99, admin_id: Admin.first.id, category_id: Category.first.id )
