@@ -61,11 +61,7 @@ Product.create(name:"Nonagon Infinity" ,
     img: "https://upload.wikimedia.org/wikipedia/en/2/29/Nonagon_Infinity.png",
     price: 25, admin_id: Admin.first.id, category_id: Category.first.id)
 
-Product.create(name:"Flying Microtonal Banana" , 
-    description:"Flying Microtonal Banana (subtitled Explorations into Microtonal Tuning, Volume 1) is the ninth studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 24 February 2017 on Flightless Records in Australia, ATO Records in the United States, and Heavenly Recordings in the United Kingdom. It is the first of five albums released by the band in 2017.",
-    brand: "King Gizzard & The Lizard Wizard", 
-    img: "https://upload.wikimedia.org/wikipedia/en/4/49/Flying_Microtonal_Banana.jpg",
-    price: 25, admin_id: Admin.first.id, category_id: Category.first.id)
+
 
 Product.create(name:"Murder Of The Universe" , 
     description:"Murder of the Universe is the tenth studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 23 June 2017 by Flightless in Australia, ATO Records in the United States, and Heavenly Recordings in the United Kingdom. It is the second of five albums released by the band in 2017. It is also the longest album that the band have released to date at 21 tracks and 46 minutes in length.",

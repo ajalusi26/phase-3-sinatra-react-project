@@ -2,7 +2,12 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-
+  
+  #admin login
+  post '/admin' do 
+    currentAdmin = Admin.where('username = ? and password = ?', params[:username], params[:password])
+    currentAdmin.to_json
+  end
   # Add + authenticate user 
   post "/addUser" do
     User.exists?(:username => params[:username]) ? new_user = false :  new_user = User.create(username: params[:username], email: params[:email], password: params[:password])
