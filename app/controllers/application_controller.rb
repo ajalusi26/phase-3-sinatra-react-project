@@ -31,6 +31,12 @@ class ApplicationController < Sinatra::Base
      }
      products.to_json
   end
+
+  get '/products/:id' do
+    product = Product.find(params[:id])
+    product.to_json
+  end
+
   #add to cart and get cart items
 
   post '/add_to_cart' do
