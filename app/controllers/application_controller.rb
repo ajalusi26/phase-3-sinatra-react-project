@@ -18,10 +18,6 @@ class ApplicationController < Sinatra::Base
     currentUser = User.where('username = ? and password = ?', params[:username], params[:password])
     currentUser.to_json  
   end
-  get '/allUsers' do 
-    allUsers = User.all 
-    allUsers.to_json
-  end
 
   get '/products' do
     products = Product.all
@@ -48,13 +44,35 @@ class ApplicationController < Sinatra::Base
   #add to cart and get cart items
 
   post '/add_to_cart' do
-    cartItem = Cart.create(user_id: params[:user_id], product_id: params[:product_id], quantity: 1)
-    cartItem.to_json
+    if User.find(params[:user_id]).carts.exists?(:product_id => params[:product_id])
+      User.find(params[:user_id]).carts.where('product_id = ?', params[:product_id]).map do |i|
+        i.quantity += 1
+        i.save 
+      end
+      cartItem = User.find(params[:user_id]).carts.where('product_id = ?', params[:product_id])
+      cartItem.to_json
+    else
+      cartItem = Cart.create(user_id: params[:user_id], product_id: params[:product_id], quantity: 1)
+      cartItem.to_json
+    end
   end
 
-  post '/get_cart_items' do
-    allCartItems = User.find(params[:user_id]).carts.map{|i| i.product}
+  get '/cart_items/:id' do
+    allCartItems = []
+    User.find(params[:id]).carts.map do |i|
+      item = { 
+        id: i.product.id,
+        name: i.product.name,
+        description: i.product.description,
+        brand: i.product.brand,
+        img: i.product.img,
+        quantity: i.quantity
+       }
+       allCartItems << item
+    end
+    # allCartItems = User.find(params[:id]).carts.map{|i| i.product}
     allCartItems.to_json
   end
+
 
 end
