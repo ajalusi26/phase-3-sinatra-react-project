@@ -114,6 +114,7 @@ class ApplicationController < Sinatra::Base
     cart.to_json
   end
 
+
   get '/reviews/:id' do
     reviews = []
     User_Reviews.where('product_id = ?', params[:id]).map do |i|
@@ -135,4 +136,8 @@ class ApplicationController < Sinatra::Base
     newComment.to_json
   end
 
+  get '/related/:category_id/:brand' do 
+    related = Category.find(params[:category_id]).products.where('brand = ?', params[:brand]).limit(4)
+    related.to_json
+  end
 end
