@@ -27,7 +27,8 @@ class ApplicationController < Sinatra::Base
     products = { 
       all: Product.all,
       phones: Category.first.products,
-      games: Category.second.products
+      tvs: Category.second.products,
+      consoles: Category.third.products
      }
      products.to_json
   end
@@ -73,7 +74,6 @@ class ApplicationController < Sinatra::Base
     cart = Cart.find { |cart| cart.product_id == params[:id].to_i }
     cart.destroy
     cart.to_json
-    
   end
   
   get '/cart_items/:id' do
