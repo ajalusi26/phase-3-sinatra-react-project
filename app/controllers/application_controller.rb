@@ -55,10 +55,17 @@ class ApplicationController < Sinatra::Base
 
   get '/get_cart_items/:id' do
     cart_data = []
-    allCartItems = User.find(params[:id]).carts.map{|i| i.product}
-    total = User.find(params[:id]).carts.map{|i| i.product.price}
+    allCartItems = User.find(params[:id]).carts.map{|i| 
+      if i.quantity == 0
+        i.destroy
+        nil
+      else
+        i.product
+      end}
+    allCartItems.delete(nil)  
+    total = User.find(params[:id]).carts.map{|i| i.product.price * i.quantity}
     cart_data << allCartItems
-    cart_data << total.sum
+    cart_data << total.sum.round(2)
     cart_data.to_json
   end
 
@@ -68,6 +75,7 @@ class ApplicationController < Sinatra::Base
     cart.to_json
     
   end
+  
   get '/cart_items/:id' do
     allCartItems = []
     User.find(params[:id]).carts.map do |i|
@@ -83,6 +91,27 @@ class ApplicationController < Sinatra::Base
     end
     # allCartItems = User.find(params[:id]).carts.map{|i| i.product}
     allCartItems.to_json
+  end
+
+  get '/get_cart_quantity/:id' do
+    quantity = Cart.find { |cart| cart.product_id == params[:id].to_i }.quantity
+    quantity.to_json
+  end
+
+  patch '/cart_quantity_add/:id' do
+    cart = Cart.find{ |cart| cart.product_id == params[:id].to_i }
+    cart.update(
+      quantity: params[:quantity]
+    )
+    cart.to_json
+  end
+
+  patch '/cart_quantity_subtract/:id' do
+    cart = Cart.find{ |cart| cart.product_id == params[:id].to_i }
+    cart.update(
+      quantity: params[:quantity]
+    )
+    cart.to_json
   end
 
 
