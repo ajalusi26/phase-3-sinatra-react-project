@@ -114,5 +114,25 @@ class ApplicationController < Sinatra::Base
     cart.to_json
   end
 
+  get '/reviews/:id' do
+    reviews = []
+    User_Reviews.where('product_id = ?', params[:id]).map do |i|
+      x = { 
+        comment: i.comment,
+        user: i.user
+       }
+       reviews << x
+    end
+    reviews.to_json
+  end
+
+  post '/newComment' do
+    comment = User_Reviews.create(product_id: params[:product_id], user_id: params[:user_id], comment: params[:comment]) 
+    newComment = { 
+      comment: comment.comment,
+      user: comment.user
+     }
+    newComment.to_json
+  end
 
 end

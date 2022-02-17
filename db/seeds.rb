@@ -14,6 +14,7 @@ User.create(username: "bobby", email:"bobby@gmail.com", password:"123")
 
 
 
+
 Product.create(name:"Galaxy S21 FE 5G" , 
     description:"Get more out of the activities you heart most with Galaxy S21 FE 5G. Whether you're a gaming guru or social media star, this crowd pleaser has the style, power and pro-grade camera to unleash epic in the everyday.",
     brand: "Samsung", 
@@ -133,6 +134,10 @@ Product.create(name: 'Nintendo Switch Lite',
     brand: "Nintendo",
     img: 'https://marvel-b1-cdn.bc0a.com/f00000000130552/www.bodyguardz.com/dw/image/v2/BDCW_PRD/on/demandware.static/-/Sites-nlu_products/default/dw3bb05b73/images/nintendo/Switch%20Lite/installed.jpg?sfrm=jpg',
     price: 199.00, admin_id: Admin.first.id, category_id: Category.third.id)
+
+User_Reviews.create(product_id: Product.first.id, user_id: User.first.id, comment: "LOVE ITTTT")
+User_Reviews.create(product_id: Product.first.id, user_id: User.first.id, comment: "really fast and responsive, totally worth the money.")
+User_Reviews.create(product_id: Product.first.id, user_id: User.first.id, comment: "Gave this phone as a gift, my nephew LOVES it!!")
 
 
 puts "✅ Done seeding!"
