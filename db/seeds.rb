@@ -141,4 +141,3 @@ User_Reviews.create(product_id: Product.first.id, user_id: User.first.id, commen
 
 
 puts "✅ Done seeding!"
-
